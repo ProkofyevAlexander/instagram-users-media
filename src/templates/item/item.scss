@@ -1,0 +1,69 @@
+$content-padding: 10px;
+$user-image-size: 40px;
+$user-names-font-size: .8em;
+$time-font-size: .85em;
+$time-color: #aaaaaa;
+$description-font-size: .8em;
+
+.item {
+  width: 295px;
+  box-shadow: 0 0 8px #888888;
+  margin: 20px;
+  border-radius: 2px;
+}
+
+.item__header {
+  padding: $content-padding;
+  height: $user-image-size;
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+.item__header-user-image {
+  width: $user-image-size;
+  height: $user-image-size;
+  border-radius: $user-image-size / 2;
+  overflow: hidden;
+}
+
+.item__header-user-image>img {
+  width: $user-image-size;
+}
+
+.item__header-user-names {
+  padding-left: 10px;
+  font-size: $user-names-font-size;
+  flex-grow: 1;
+}
+
+.item__header-user-name {
+  font-weight: 600;
+  padding-bottom: 4px;
+}
+
+.item__header-posting-time {
+  font-size: $time-font-size;
+  color: $time-color;
+}
+
+.item__content-image>img {
+  max-width: 100%;
+}
+
+.item__content-likes {
+  padding: $content-padding;
+}
+
+.item__content-likes>button {
+  cursor: pointer;
+  border: none;
+  background: url(/assets/like.png) 2px 2px no-repeat;
+  padding: 2px 2px 2px 22px;
+  font-size: .8em;
+}
+
+.item__content-description {
+  padding: 0 $content-padding 30px $content-padding;
+  font-size: $description-font-size;
+}

@@ -4,11 +4,12 @@ let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let helpers = require('./helpers');
 
 const extractCss = new ExtractTextPlugin({
-    filename: "assets/[name].[hash].css"
+    filename: 'assets/[name].[hash].css'
 });
 
 module.exports = {
     entry: {
+        'polyfills': './src/polyfills.ts',
         'app': './src/main.ts'
     },
 
@@ -20,14 +21,15 @@ module.exports = {
         rules: [
             {
                 test: /\.ts$/,
-                loaders: [{
-                    loader: 'awesome-typescript-loader',
-                    options: {configFileName: helpers.root('src', 'tsconfig.json')}
-                }]
+                loader: 'awesome-typescript-loader'
             },
             {
                 test: /\.html$/,
                 loader: 'html-loader'
+            },
+            {
+                test: /\.pug/,
+                loader: ['html-loader', 'pug-html-loader?exports=false']
             },
             {
                 test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
@@ -38,13 +40,13 @@ module.exports = {
                 loader: extractCss.extract({
                     loader: [
                         {
-                            loader: "css-loader?importLoaders=1"
+                            loader: 'css-loader?importLoaders=1'
                         },
                         {
-                            loader: "postcss-loader"
+                            loader: 'postcss-loader'
                         }
                     ],
-                    fallbackLoader: "style-loader"
+                    fallbackLoader: 'style-loader'
                 })
             },
             {
@@ -52,16 +54,16 @@ module.exports = {
                 loader: extractCss.extract({
                     loader: [
                         {
-                            loader: "css-loader?importLoaders=1"
+                            loader: 'css-loader?importLoaders=1'
                         },
                         {
-                            loader: "postcss-loader"
+                            loader: 'postcss-loader'
                         },
                         {
-                            loader: "sass-loader"
+                            loader: 'sass-loader'
                         }
                     ],
-                    fallbackLoader: "style-loader"
+                    fallbackLoader: 'style-loader'
                 })
             }
         ]
@@ -70,11 +72,11 @@ module.exports = {
     plugins: [
 
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['app']
+            name: ['app', 'polyfills']
         }),
 
         new HtmlWebpackPlugin({
-            template: 'src/index.html'
+            template: 'src/index.pug'
         }),
 
         extractCss

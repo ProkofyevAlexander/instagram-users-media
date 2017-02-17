@@ -1,11 +1,11 @@
 import { Ajax } from './lib/ajax';
 import { SettingsInterface } from './settings/settings.interface';
-import { ItemFactory } from './templates/item/item.factory';
+import { ItemsContainer } from './templates/items/items-container';
 
 const settings: SettingsInterface = require('./settings/settings.json');
 
 import './styles';
-import { ItemInterface } from './templates/item/item.interface';
+import { ItemInterface } from './templates/items/item.interface';
 
 interface MediaDataInterface {
     data: ItemInterface[];
@@ -13,7 +13,6 @@ interface MediaDataInterface {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    const itemFactory = ItemFactory.getInstance();
     const container = <HTMLDivElement>document.querySelector('.main-content');
 
     Ajax
@@ -26,8 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then((data: MediaDataInterface) => {
             container.textContent = '';
+            const itemsContainer = new ItemsContainer(container);
             data.data
                 .filter(item => item.type === 'image')
-                .forEach(item => itemFactory.addToContainer(container, item));
+                .forEach(item => itemsContainer.addItem(item));
         });
 });

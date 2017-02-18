@@ -15,22 +15,7 @@ export class ItemsContainer {
     }
 
     addItem(item: ItemInterface) {
-
-        const template = this.template;
-
-        template.userImage.src = item.user.profile_picture;
-        template.userName.textContent = item.user.username;
-        template.userFullName.textContent = item.user.full_name;
-        template.postingTime.textContent = '3h';
-        template.contentImage.src = item.images.low_resolution.url;
-        template.likes.textContent = '' + item.likes.count;
-        template.likes.dataset['id'] = item.id;
-        template.contentDescription.textContent = item.caption
-            ? item.caption.text
-            : '';
-
-        const clone = document.importNode(template.content, true);
-        this.itemsContainer.appendChild(clone);
+        this.itemsContainer.appendChild(this.template.createHMLElement(item));
     }
 
     private static listenersInitialized = false;

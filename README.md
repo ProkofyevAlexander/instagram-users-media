@@ -7,6 +7,7 @@ Project use:
  - [Pug](https://pugjs.org) template engine for Node.js
  - [TSLint](https://palantir.github.io/tslint/) and [ESLint](https://github.com/buzinas/tslint-eslint-rules) rules for it
  - Normalize styles by [normalize.css](https://github.com/necolas/normalize.css/)
+ - [PostCSS](http://postcss.org/) with [autoprefixer](https://github.com/postcss/autoprefixer)
 
 ## Install
 

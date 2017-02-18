@@ -67,13 +67,18 @@ $description-font-size: .8em;
   max-width: 100%;
 }
 
-.item__content-likes>button {
+.item__content-likes-button {
   cursor: pointer;
   border: none;
   background: url(/assets/like.png) 2px 2px no-repeat;
   padding: 2px 2px 2px 22px;
   font-size: .8em;
   margin: $content-padding;
+  transition: opacity .5s;
+}
+
+.item__content-likes-button:hover {
+  opacity: 0.5;
 }
 
 .item__content-description>div {

@@ -4,8 +4,18 @@ export class ItemTemplate {
 
     private constructor() {
 
-        const template = <HTMLTemplateElement>document.querySelector('#item');
-        const content = <DocumentFragment>template.content;
+        let content: DocumentFragment | HTMLElement;
+
+        if ('content' in document.createElement('template')) {
+            content = <DocumentFragment>(<HTMLTemplateElement>document.querySelector('#item')).content;
+        }
+        else {
+            // If browser does not support templates
+            content = <HTMLElement>document.querySelector('#item').firstChild;
+            this.createElement = () => {
+                return <HTMLElement>content.cloneNode(true);
+            };
+        }
 
         this.content = content;
         this.userImage = <HTMLImageElement>content.querySelector('.item__header-user-image>img');
@@ -13,8 +23,9 @@ export class ItemTemplate {
         this.userFullName = <HTMLDivElement>content.querySelector('.item__header-user-full-name');
         this.postingTime = <HTMLDivElement>content.querySelector('.item__header-posting-time');
         this.contentImage = <HTMLImageElement>content.querySelector('.item__content-image>img');
-        this.likes = <HTMLButtonElement>content.querySelector('.item__content-likes-button');
-        this.contentDescription = <HTMLDivElement>content.querySelector('.item__content-description');
+        this.likes = <HTMLButtonElement>content.querySelector('.' + ItemTemplate.getLikesButtonClassName());
+        this.contentDescription = <HTMLDivElement>content.querySelector('.item__content-description>div');
+
     }
 
     static getInstance(): ItemTemplate {
@@ -37,7 +48,11 @@ export class ItemTemplate {
             ? item.caption.text
             : '';
 
-        return <HTMLElement>document.importNode(this.content, true);
+        return this.createElement();
+    }
+
+    static getLikesButtonClassName(): string {
+        return 'item__content-likes-button';
     }
 
     content: DocumentFragment;
@@ -50,4 +65,7 @@ export class ItemTemplate {
     contentDescription: HTMLDivElement;
 
     private static instance: ItemTemplate;
+    private createElement = () => {
+        return <HTMLElement>document.importNode(this.content, true);
+    }
 }

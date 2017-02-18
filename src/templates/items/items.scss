@@ -1,4 +1,5 @@
 $content-padding: 10px;
+$content-padding-media: 20px;
 $user-image-size: 40px;
 $user-names-font-size: .8em;
 $time-font-size: .85em;
@@ -17,14 +18,22 @@ $description-font-size: .8em;
   box-shadow: 0 0 8px #888888;
   margin: 20px;
   border-radius: 2px;
+  position: relative;
 }
 
 .item__header {
-  padding: $content-padding;
   height: $user-image-size;
   display: flex;
   align-items: center;
   align-content: center;
+  padding-top: $content-padding;
+  padding-bottom: $content-padding;
+}
+.item__header>*:first-child {
+  margin-left: $content-padding;
+}
+.item__header>*:last-child {
+  margin-right: $content-padding;
 }
 
 .item__header-user-image {
@@ -58,19 +67,64 @@ $description-font-size: .8em;
   max-width: 100%;
 }
 
-.item__content-likes {
-  padding: $content-padding;
-}
-
 .item__content-likes>button {
   cursor: pointer;
   border: none;
   background: url(/assets/like.png) 2px 2px no-repeat;
   padding: 2px 2px 2px 22px;
   font-size: .8em;
+  margin: $content-padding;
 }
 
-.item__content-description {
+.item__content-description>div {
   padding: 0 $content-padding 30px $content-padding;
   font-size: $description-font-size;
+}
+
+@media screen and (max-width: 740px) {
+  .item {
+    max-width: none;
+    width: 100%;
+  }
+  .item__content-image {
+    width: 50%;
+    float: left;
+  }
+  .item__header,
+  .item__content-likes,
+  .item__content-description {
+    width: 50%;
+    float: right;
+  }
+
+  .item__header {
+    padding-top: $content-padding-media;
+    padding-bottom: $content-padding-media;
+    position: relative;
+  }
+  .item__header:after {
+    content: "";
+    position: absolute;
+    left: $content-padding-media;
+    right: $content-padding-media;
+    bottom: 4px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #eeeeee;
+  }
+  .item__header>*:first-child {
+    margin-left: $content-padding-media;
+  }
+  .item__header>*:last-child {
+    margin-right: $content-padding-media;
+  }
+
+  .item__content-likes>button {
+    margin: $content-padding-media $content-padding-media $content-padding;
+  }
+
+  .item__content-description>div {
+    padding: 0 $content-padding-media 30px $content-padding-media;
+  }
+
 }

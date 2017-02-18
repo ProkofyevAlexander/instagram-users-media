@@ -6,7 +6,7 @@ export class ItemsContainer {
     constructor(container: HTMLElement) {
 
         if (!ItemsContainer.listenersInitialized) {
-            ItemsContainer.setListeners();
+            this.setListeners();
             ItemsContainer.listenersInitialized = true;
         }
 
@@ -28,10 +28,10 @@ export class ItemsContainer {
         container.appendChild(this.itemsContainer);
     }
 
-    private static setListeners() {
+    private setListeners() {
         document.addEventListener('click', (e: MouseEvent) => {
             const target = <HTMLElement>e.target;
-            if (target.classList.contains('item__content-likes-button')) {
+            if (target.classList.contains(ItemTemplate.getLikesButtonClassName())) {
                 alert(target.dataset['id']);
             }
         });

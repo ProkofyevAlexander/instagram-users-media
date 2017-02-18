@@ -1,4 +1,5 @@
 import { ItemInterface } from './item.interface';
+import { timeToPeriodConverter } from '../../lib/time-to-period-converter';
 
 export class ItemTemplate {
 
@@ -40,7 +41,7 @@ export class ItemTemplate {
         this.userImage.src = item.user.profile_picture;
         this.userName.textContent = item.user.username;
         this.userFullName.textContent = item.user.full_name;
-        this.postingTime.textContent = '3h';
+        this.postingTime.textContent = timeToPeriodConverter(item.created_time);
         this.contentImage.src = item.images.low_resolution.url;
         this.likes.textContent = '' + item.likes.count;
         this.likes.dataset['id'] = item.id;

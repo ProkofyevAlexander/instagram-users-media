@@ -6,7 +6,7 @@ Project use:
  - [SASS](http://sass-lang.com/)
  - [Pug](https://pugjs.org) template engine for Node.js
  - [TSLint](https://palantir.github.io/tslint/) and [ESLint](https://github.com/buzinas/tslint-eslint-rules) rules for it
- - Normalizes styles by [normalize.css](https://github.com/necolas/normalize.css/)
+ - Normalize styles by [normalize.css](https://github.com/necolas/normalize.css/)
 
 ## Install
 

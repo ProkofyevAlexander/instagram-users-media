@@ -87,6 +87,10 @@ $description-font-size: .8em;
 }
 
 @media screen and (max-width: 740px) {
+  .items-column {
+    display: flex;
+    flex-wrap: wrap;
+  }
   .item {
     max-width: none;
     width: 100%;

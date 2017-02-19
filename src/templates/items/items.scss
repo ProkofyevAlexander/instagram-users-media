@@ -94,10 +94,12 @@ $description-font-size: .8em;
   .item {
     max-width: none;
     width: 100%;
+    overflow: hidden;
   }
   .item__content-image {
     width: 50%;
     float: left;
+    margin-bottom: -4px;
   }
   .item__header,
   .item__content-likes,

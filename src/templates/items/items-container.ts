@@ -78,7 +78,10 @@ export class ItemsContainer {
     }
 
     private addItemsToColumns() {
-        const html: string[] = [].fill('', 0, this.itemsColumns.length - 1);
+        const html: string[] = [];
+        this.itemsColumns.forEach(() => {
+            html.push('');
+        });
         this.itemsHtml.forEach((item, index) => {
             html[index % this.itemsColumns.length] += item;
         });

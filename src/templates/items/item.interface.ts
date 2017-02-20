@@ -30,5 +30,11 @@ export interface ItemInterface {
         count: number;
     };
     link: string;
+    location: {
+        id: number;
+        latitude: number;
+        longitude: number;
+        name: string;
+    };
     user: ItemUserInterface;
 }

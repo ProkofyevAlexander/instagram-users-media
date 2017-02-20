@@ -21,7 +21,7 @@ export class ItemTemplate {
         this.content = content;
         this.userImage = <HTMLImageElement>content.querySelector('.item__header-user-image>img');
         this.userName = <HTMLDivElement>content.querySelector('.item__header-user-name');
-        this.userFullName = <HTMLDivElement>content.querySelector('.item__header-user-full-name');
+        this.location = <HTMLDivElement>content.querySelector('.item__header-location');
         this.postingTime = <HTMLDivElement>content.querySelector('.item__header-posting-time');
         this.contentImage = <HTMLImageElement>content.querySelector('.item__content-image>img');
         this.likes = <HTMLButtonElement>content.querySelector('.' + ItemTemplate.getLikesButtonClassName());
@@ -40,7 +40,9 @@ export class ItemTemplate {
 
         this.userImage.src = item.user.profile_picture;
         this.userName.textContent = item.user.username;
-        this.userFullName.textContent = item.user.full_name;
+        item.location
+            ? this.location.textContent = item.location.name
+            : this.location.innerHTML = '&nbsp;';
         this.postingTime.textContent = timeToPeriodConverter(item.created_time);
         this.contentImage.src = item.images.low_resolution.url;
         this.likes.textContent = '' + item.likes.count;
@@ -59,7 +61,7 @@ export class ItemTemplate {
     content: DocumentFragment;
     userImage: HTMLImageElement;
     userName: HTMLDivElement;
-    userFullName: HTMLDivElement;
+    location: HTMLDivElement;
     postingTime: HTMLDivElement;
     contentImage: HTMLImageElement;
     likes: HTMLButtonElement;

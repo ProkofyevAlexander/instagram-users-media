@@ -5,18 +5,7 @@ export class ItemTemplate {
 
     private constructor() {
 
-        let content: DocumentFragment | HTMLElement;
-
-        if ('content' in document.createElement('template')) {
-            content = <DocumentFragment>(<HTMLTemplateElement>document.querySelector('#item')).content;
-        }
-        else {
-            // If browser does not support templates
-            content = <HTMLElement>document.querySelector('#item').firstChild;
-            this.createElement = () => {
-                return <HTMLElement>content.cloneNode(true);
-            };
-        }
+        let content = (<HTMLTemplateElement>document.querySelector('#item')).content;
 
         this.content = content;
         this.userImage = <HTMLImageElement>content.querySelector('.item__header-user-image>img');

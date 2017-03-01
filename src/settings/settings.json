@@ -1,4 +1,4 @@
 {
-  "mediaUrl": "https://api.instagram.com/v1/users/691623/media/recent",
-  "accessToken": "691623.1419b97.479e4603aff24de596b1bf18891729f3"
+  "mediaUrl": "https://api.instagram.com/v1/users/self/media/recent",
+  "accessToken": "4741882154.0a12da7.d0eab8fac7a44cb1886c65f4ff199382"
 }

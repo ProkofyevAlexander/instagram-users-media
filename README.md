@@ -9,6 +9,8 @@ Project use:
  - Normalize styles by [normalize.css](https://github.com/necolas/normalize.css/)
  - [PostCSS](http://postcss.org/) with [autoprefixer](https://github.com/postcss/autoprefixer)
 
+See [Demo](http://prokofyev-alexander.me/instagram-users-media/)
+
 ## Install
 
 ```

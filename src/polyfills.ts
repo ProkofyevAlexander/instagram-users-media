@@ -1,2 +1,2 @@
 import 'core-js/es6';
-require('./lib/template-polyfill');
+import '../node_modules/webcomponentsjs/lite.js';

@@ -20,18 +20,15 @@ export class ItemsContainer {
 
     addItem(item: ItemInterface) {
         let itemHtmlElement = this.template.createHMLElement(item);
-        this.tempContainer.innerHTML = '';
-        this.tempContainer.appendChild(itemHtmlElement);
-        itemHtmlElement = <HTMLElement>this.tempContainer.firstChild;
-        this.itemsColumns[this.itemsHtml.length % this.itemsColumns.length].appendChild(itemHtmlElement);
-        this.itemsHtml.push(itemHtmlElement.outerHTML);
+        this.items.push(itemHtmlElement.cloneNode(true));
+        this.itemsColumns[this.items.length % this.itemsColumns.length].appendChild(itemHtmlElement);
     }
 
     private static listenersInitialized = false;
     private template: ItemTemplate;
     private itemsContainer: HTMLDivElement;
     private itemsColumns: HTMLDivElement[] = [];
-    private itemsHtml: string[] = [];
+    private items: Node[] = [];
     private tempContainer: HTMLDivElement;
 
     private createItemsContainer(container: HTMLElement): void {
@@ -78,15 +75,8 @@ export class ItemsContainer {
     }
 
     private addItemsToColumns() {
-        const html: string[] = [];
-        this.itemsColumns.forEach(() => {
-            html.push('');
-        });
-        this.itemsHtml.forEach((item, index) => {
-            html[index % this.itemsColumns.length] += item;
-        });
-        this.itemsColumns.forEach((column, index) => {
-            column.innerHTML = html[index];
+        this.items.forEach((item, index) => {
+            this.itemsColumns[index % this.itemsColumns.length].appendChild(item.cloneNode(true));
         });
     }
 }
